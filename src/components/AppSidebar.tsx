@@ -1,4 +1,4 @@
-import { File, Activity, ChevronDown } from "lucide-react"
+import { Sheet, Activity, ChevronDown } from "lucide-react"
 
 import {
   Sidebar,
@@ -21,33 +21,33 @@ const groupedItems = [
     label: "Sensor DHT11",
     items: [
       { title: "Monitoreo", url: "/sensor-1/monitoreo", icon: Activity },
-      { title: "Exportar ", url: "/sensor-1/export", icon: File },
+      { title: "Exportar ", url: "/sensor-1/export", icon: Sheet },
     ],
   },
   {
     label: "Sensor UV",
     items: [
       { title: "Monitoreo", url: "/sensor-2/monitoreo", icon: Activity },
-      { title: "Exportar ", url: "/sensor-2/export", icon: File },
+      { title: "Exportar ", url: "/sensor-2/export", icon: Sheet },
     ],
   },
   {
     label: "Sensor MQ117",
     items: [
       { title: "Monitoreo", url: "/sensor-3/monitoreo", icon: Activity },
-      { title: "Exportar", url: "/sensor-3/export", icon: File },
+      { title: "Exportar", url: "/sensor-3/export", icon: Sheet },
     ],
   },
   {
     label: "Sensor 4",
     items: [
       { title: "Monitoreo", url: "/sensor-4/monitoreo", icon: Activity },
-      { title: "Exportar ", url: "/sensor-4/export", icon: File },
+      { title: "Exportar ", url: "/sensor-4/export", icon: Sheet },
     ],
   },
 ];
 
-export function AppSidebar() {
+export const AppSidebar: React.FC<any> = ({ connection }) => {
   return (
     <Sidebar>
       <SidebarContent>
@@ -55,7 +55,8 @@ export function AppSidebar() {
           <div className="h-[100px] w-full m-auto">
             <img className="h-full w-full object-contain " src={WIFI} alt="WiFi Icon" />
           </div>
-          <SidebarGroupLabel>Panel Administrativo</SidebarGroupLabel>
+          <SidebarGroupLabel className="flex justify-between">Panel Administrativo<div className={`w-2 h-2 rounded-full ${connection ? "bg-green-500" : "bg-red-500"}`}></div>
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuButton className="p-0">

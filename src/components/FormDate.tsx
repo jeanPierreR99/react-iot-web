@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { format } from "date-fns"
-import { CalendarIcon, Loader2 } from "lucide-react"
+import { CalendarIcon, Download, Loader2 } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -83,7 +83,7 @@ const FormSchema = z.object({
     }),
 })
 
-interface ChartData {
+export interface IChartData {
     date: string;
     hour: string;
     desktop: number;
@@ -91,13 +91,14 @@ interface ChartData {
 }
 
 interface Props {
-    setChartData: (data: ChartData[]) => void;
+    charData: IChartData[];
+    setChartData: (data: IChartData[]) => void;
     visible: boolean;
     setVisible: (value: boolean) => void;
     name: string;
 }
 
-export const FormDate: React.FC<Props> = ({ setChartData, visible, setVisible, name }) => {
+export const FormDate: React.FC<Props> = ({ charData, setChartData, visible, setVisible, name }) => {
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
@@ -147,8 +148,8 @@ export const FormDate: React.FC<Props> = ({ setChartData, visible, setVisible, n
                                             </Button>
                                         </FormControl>
                                     </PopoverTrigger>
-                                    <Button disabled={visible ? true : false} className="w-fit bg-blue-500 hover:bg-blue-400" type="submit">Enviar {visible && <Loader2 className="animate-spin" />} </Button>
-                                    <Button className="w-fit bg-green-500 hover:bg-green-400" type="submit">Exportar</Button>
+                                    <Button disabled={visible ? true : false} className="w-fit bg-blue-500 hover:bg-blue-400" type="submit">Buscar {visible && <Loader2 className="animate-spin" />} </Button>
+                                    {charData.length > 0 && <Button className="w-fit bg-green-500 hover:bg-green-400" type="button"><Download></Download>Exportar</Button>}
                                 </div>
                                 <PopoverContent className="w-auto p-0" align="start">
                                     <Calendar

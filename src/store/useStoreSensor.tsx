@@ -1,19 +1,47 @@
 import { create } from 'zustand';
 
-interface IItem {
+interface IItem1 {
     time: string;
-    desktop: number;
-    mobile: number;
+    sensor1NameKey1: number;
+    sensor1NameKey2: number;
+}
+interface IItem2 {
+    time: string;
+    sensor2NameKey1: number;
+    sensor2NameKey2: number;
+}
+interface IItem3 {
+    time: string;
+    sensor3NameKey1: number;
+    sensor3NameKey2: number;
+}
+interface IItem4 {
+    time: string;
+    sensor4NameKey1: number;
+    sensor4NameKey2: number;
+}
+interface IItem5 {
+    time: string;
+    sensor5NameKey1: number;
+    sensor5NameKey2: number;
+}
+interface IItem6 {
+    time: string;
+    sensor6NameKey1: number;
+    sensor6NameKey2: number;
 }
 
 export interface IItemImp {
-    sensor1: IItem[];
-    sensor2: IItem[];
-    sensor3: IItem[];
-    sensor4: IItem[];
-    sensor5: IItem[];
-    sensor6: IItem[];
+    sensor1: IItem1[];   //key useStore
+    sensor2: IItem2[];
+    sensor3: IItem3[];
+    sensor4: IItem4[];
+    sensor5: IItem5[];
+    sensor6: IItem6[];
 }
+
+type IItem = IItem1 | IItem2 | IItem3 | IItem4 | IItem5 | IItem6;
+
 
 interface ItemState {
     item: IItemImp;
@@ -23,49 +51,49 @@ interface ItemState {
 const useStoreSensor = create<ItemState>((set) => ({
     item: {
         sensor1: [
-            // { time: "09:00:00", desktop: 186, mobile: 86 },
-            // { time: "09:05:00", desktop: 305, mobile: 26 },
-            // { time: "09:10:00", desktop: 237, mobile: 16 },
-            // { time: "09:15:00", desktop: 73, mobile: 56 },
-            // { time: "09:20:00", desktop: 209, mobile: 46 },
+            { time: "09:00:00", sensor1NameKey1: 286, sensor1NameKey2: 86 },
+            { time: "09:05:00", sensor1NameKey1: 305, sensor1NameKey2: 26 },
+            { time: "09:10:00", sensor1NameKey1: 237, sensor1NameKey2: 16 },
+            { time: "09:15:00", sensor1NameKey1: 73, sensor1NameKey2: 56 },
+            { time: "09:20:00", sensor1NameKey1: 209, sensor1NameKey2: 46 },
         ],
         sensor2: [
-            // { time: "09:00:00", desktop: 186, mobile: 86 },
-            // { time: "09:05:00", desktop: 305, mobile: 26 },
-            // { time: "09:10:00", desktop: 237, mobile: 16 },
-            // { time: "09:15:00", desktop: 73, mobile: 56 },
-            // { time: "09:20:00", desktop: 209, mobile: 46 },
+            { time: "09:00:00", sensor2NameKey1: 186, sensor2NameKey2: 86 },
+            { time: "09:05:00", sensor2NameKey1: 305, sensor2NameKey2: 26 },
+            { time: "09:10:00", sensor2NameKey1: 237, sensor2NameKey2: 16 },
+            { time: "09:15:00", sensor2NameKey1: 73, sensor2NameKey2: 56 },
+            { time: "09:20:00", sensor2NameKey1: 209, sensor2NameKey2: 46 },
         ],
         sensor3: [
-            // { time: "09:00:00", desktop: 186, mobile: 86 },
-            // { time: "09:05:00", desktop: 305, mobile: 26 },
-            // { time: "09:10:00", desktop: 237, mobile: 16 },
-            // { time: "09:15:00", desktop: 73, mobile: 56 },
-            // { time: "09:20:00", desktop: 209, mobile: 46 },
+            { time: "09:00:00", sensor3NameKey1: 186, sensor3NameKey2: 86 },
+            { time: "09:05:00", sensor3NameKey1: 305, sensor3NameKey2: 26 },
+            { time: "09:10:00", sensor3NameKey1: 237, sensor3NameKey2: 16 },
+            { time: "09:15:00", sensor3NameKey1: 73, sensor3NameKey2: 56 },
+            { time: "09:20:00", sensor3NameKey1: 209, sensor3NameKey2: 46 },
         ],
         sensor4: [
-            // { time: "09:00:00", desktop: 186, mobile: 86 },
-            // { time: "09:05:00", desktop: 305, mobile: 26 },
-            // { time: "09:10:00", desktop: 237, mobile: 16 },
-            // { time: "09:15:00", desktop: 73, mobile: 56 },
-            // { time: "09:20:00", desktop: 209, mobile: 46 },
+            { time: "09:00:00", sensor4NameKey1: 186, sensor4NameKey2: 86 },
+            { time: "09:05:00", sensor4NameKey1: 305, sensor4NameKey2: 26 },
+            { time: "09:10:00", sensor4NameKey1: 237, sensor4NameKey2: 16 },
+            { time: "09:15:00", sensor4NameKey1: 73, sensor4NameKey2: 56 },
+            { time: "09:20:00", sensor4NameKey1: 209, sensor4NameKey2: 46 },
         ],
         sensor5: [
-            // { time: "09:00:00", desktop: 186, mobile: 86 },
-            // { time: "09:05:00", desktop: 305, mobile: 26 },
-            // { time: "09:10:00", desktop: 237, mobile: 16 },
-            // { time: "09:15:00", desktop: 73, mobile: 56 },
-            // { time: "09:20:00", desktop: 209, mobile: 46 },
+            { time: "09:00:00", sensor5NameKey1: 186, sensor5NameKey2: 86 },
+            { time: "09:05:00", sensor5NameKey1: 305, sensor5NameKey2: 26 },
+            { time: "09:10:00", sensor5NameKey1: 237, sensor5NameKey2: 16 },
+            { time: "09:15:00", sensor5NameKey1: 73, sensor5NameKey2: 56 },
+            { time: "09:20:00", sensor5NameKey1: 209, sensor5NameKey2: 46 },
         ],
         sensor6: [
-            // { time: "09:00:00", desktop: 186, mobile: 86 },
-            // { time: "09:05:00", desktop: 305, mobile: 26 },
-            // { time: "09:10:00", desktop: 237, mobile: 16 },
-            // { time: "09:15:00", desktop: 73, mobile: 56 },
-            // { time: "09:20:00", desktop: 209, mobile: 46 },
+            { time: "09:00:00", sensor6NameKey1: 186, sensor6NameKey2: 86 },
+            { time: "09:05:00", sensor6NameKey1: 305, sensor6NameKey2: 26 },
+            { time: "09:10:00", sensor6NameKey1: 237, sensor6NameKey2: 16 },
+            { time: "09:15:00", sensor6NameKey1: 73, sensor6NameKey2: 56 },
+            { time: "09:20:00", sensor6NameKey1: 209, sensor6NameKey2: 46 },
         ],
     },
-    setItems: (sensor, newItem) => 
+    setItems: (sensor, newItem) =>
         set((state) => {
             const updatedItems = [...state.item[sensor], newItem];
 

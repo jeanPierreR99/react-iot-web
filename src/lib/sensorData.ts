@@ -2,7 +2,7 @@ export const sensorData =
 {
     sensor1:
     {
-        sensor: "sensor1", //key
+        sensor: "sensor1", //key useStore
         name: "sensor 1",  //nombre principal
         description: "Humedad - Temperatura (sensor 1)"  //descripcion de lso sensores
     },

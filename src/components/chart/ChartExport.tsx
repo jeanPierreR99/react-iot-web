@@ -17,9 +17,10 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { FormDate } from "../FormDate";
+import { FormDate, IChartData } from "../FormDate";
 import React, { useEffect, useState } from "react";
 import { Loader2 } from "lucide-react";
+import DataTable from "../DataTable";
 
 const chartConfig = {
   visitors: {
@@ -40,7 +41,7 @@ interface prop {
   description: string;
 }
 export const ChartExport: React.FC<prop> = ({ name, description }) => {
-  const [chartData, setChartData] = useState<any>([])
+  const [chartData, setChartData] = useState<IChartData[]>([])
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -54,12 +55,12 @@ export const ChartExport: React.FC<prop> = ({ name, description }) => {
           <CardTitle>{name}</CardTitle>
           <CardDescription>{description}</CardDescription>
         </div>
-        <FormDate setChartData={setChartData} visible={visible} setVisible={setVisible} name={name}></FormDate>
+        <FormDate charData={chartData} setChartData={setChartData} visible={visible} setVisible={setVisible} name={name}></FormDate>
       </CardHeader>
 
 
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6 relative overflow-hidden">
-        {visible && <div className="absolute top-0 w-full h-full bg-white/70 z-10 flex justify-center items-center"><Loader2 className="animate-spin text-blue-500" /></div>}
+        {visible && <div className="absolute top-5 w-full h-full bg-white/70 z-10 flex justify-center"><Loader2 className="animate-spin text-blue-500" /></div>}
         {
           chartData.length > 0 ?
             <ChartContainer
@@ -127,8 +128,8 @@ export const ChartExport: React.FC<prop> = ({ name, description }) => {
               </AreaChart>
             </ChartContainer> : <CardDescription>No hay datos</CardDescription>
         }
+        {chartData.length > 0 && <DataTable chartData={chartData}></DataTable>}
       </CardContent>
-
     </Card >
 
   );

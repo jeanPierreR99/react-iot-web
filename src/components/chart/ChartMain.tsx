@@ -17,7 +17,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  ChartConfig,
   ChartContainer,
   ChartLegend,
   ChartLegendContent,
@@ -25,30 +24,21 @@ import {
 } from "@/components/ui/chart";
 import useStoreSensor, { IItemImp } from "@/store/useStoreSensor";
 
-const chartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: "hsl(var(--chart-1))",
-  },
-  mobile: {
-    label: "Mobile",
-    color: "hsl(var(--chart-2))",
-  },
-} satisfies ChartConfig;
-
 interface prop {
+  chartConfig: any;
   name: string;
   sensor: string;
   description: string;
   resize?: boolean;
 }
 
-export const ChartMain: React.FC<prop> = ({ name, sensor, description, resize }) => {
+export const ChartMain: React.FC<prop> = ({ chartConfig, name, sensor, description, resize }) => {
   const { item } = useStoreSensor();
   const sensorKey = `${sensor}` as keyof IItemImp;
 
-
-
+  const entries: any = Object.entries(chartConfig);
+  const legend1 = entries[0][1].label
+  const legend2 = entries[1] && entries[1][1] && entries[1][1].label
 
   return (
     <Card>
@@ -72,14 +62,15 @@ export const ChartMain: React.FC<prop> = ({ name, sensor, description, resize })
             }}
           >
             <defs>
-              <linearGradient id="fillDesktop" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="var(--color-desktop)" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="var(--color-desktop)" stopOpacity={0.1} />
+              <linearGradient id={`fill${legend1}`} x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor={`var(--color-${legend1})`} stopOpacity={0.8} />
+                <stop offset="95%" stopColor={`var(--color-${legend1})`} stopOpacity={0.1} />
               </linearGradient>
-              <linearGradient id="fillMobile" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="var(--color-mobile)" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="var(--color-mobile)" stopOpacity={0.1} />
-              </linearGradient>
+
+              {legend2 && <linearGradient id={`fill${legend2}`} x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor={`var(--color-${legend2})`} stopOpacity={0.8} />
+                <stop offset="95%" stopColor={`var(--color-${legend2})`} stopOpacity={0.1} />
+              </linearGradient>}
             </defs>
             <CartesianGrid vertical={true} />
             <XAxis
@@ -93,32 +84,32 @@ export const ChartMain: React.FC<prop> = ({ name, sensor, description, resize })
             <Tooltip content={<ChartTooltipContent indicator="line" />} />
             <Area
               dot={{
-                fill: "var(--color-mbile)",
+                fill: `var(--color-${legend1})`,
               }}
               activeDot={{
                 r: 6,
               }}
 
-              dataKey="mobile"
+              dataKey={legend1}
               type="natural"
               fillOpacity={0.4}
-              fill="url(#fillMobile)"
-              stroke="var(--color-mobile)"
+              fill={`url(#fill${legend1})`}
+              stroke={`var(--color-${legend1})`}
             />
-            <Area
+            {legend2 && <Area
               dot={{
-                fill: "var(--color-desktop)",
+                fill: `var(--color-${legend2})`,
               }}
               activeDot={{
                 r: 6,
               }}
 
-              dataKey="desktop"
+              dataKey={legend2}
               type="natural"
               fillOpacity={0.4}
-              fill="url(#fillDesktop)"
-              stroke="var(--color-desktop)"
-            />
+              fill={`url(#fill${legend2})`}
+              stroke={`var(--color-${legend2})`}
+            />}
             <ChartLegend content={<ChartLegendContent />} />
           </AreaChart>
         </ChartContainer>
