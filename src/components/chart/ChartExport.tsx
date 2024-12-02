@@ -79,6 +79,7 @@ export const ChartExport: React.FC<prop> = ({ name, description }) => {
                     <stop offset="95%" stopColor="var(--color-mobile)" stopOpacity={0.1} />
                   </linearGradient>
                 </defs>
+                
                 <CartesianGrid vertical={true} />
                 <XAxis
                   dataKey="hour"

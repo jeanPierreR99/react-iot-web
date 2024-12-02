@@ -51,7 +51,7 @@ export const ChartMain: React.FC<prop> = ({ chartConfig, name, sensor, descripti
       <CardContent>
         <ChartContainer
           config={chartConfig}
-          className={`${resize ? "h-[calc(100vh-240px)] w-full" : ""}`}
+          className={`${resize ? "h-auto md:h-[calc(100vh-240px)] w-full" : ""}`}
         >
           <AreaChart
             accessibilityLayer
