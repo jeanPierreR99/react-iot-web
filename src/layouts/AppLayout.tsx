@@ -7,8 +7,6 @@ import { io } from 'socket.io-client';
 import { sensorData } from "@/lib/sensorData";
 import { API_BASE } from "@/lib/configApi";
 
-// const socket = io('http://localhost:3000');
-
 const socket = io(API_BASE);
 
 export default function AppLayout() {

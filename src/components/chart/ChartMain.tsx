@@ -12,7 +12,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -74,14 +73,14 @@ export const ChartMain: React.FC<prop> = ({ chartConfig, name, sensor, descripti
             </defs>
             <CartesianGrid vertical={true} />
             <XAxis
-              dataKey="time"
+              dataKey="hour"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
               fontSize={11}
             />
             <YAxis fontSize={11} tickLine={false} axisLine={false} tickMargin={8} />
-            <Tooltip content={<ChartTooltipContent indicator="line" />} />
+            <Tooltip defaultIndex={4} trigger="click" content={<ChartTooltipContent indicator="line" />} />
             <Area
               dot={{
                 fill: `var(--color-${legend1})`,
@@ -114,12 +113,6 @@ export const ChartMain: React.FC<prop> = ({ chartConfig, name, sensor, descripti
           </AreaChart>
         </ChartContainer>
       </CardContent>
-      <CardFooter>
-        <div className="flex w-full items-start gap-2 text-sm">
-          <div className="grid gap-2">
-          </div>
-        </div>
-      </CardFooter>
     </Card>
   );
 };

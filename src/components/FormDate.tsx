@@ -21,7 +21,7 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import ButtonExport from "./ButtonExport"
 import { handleDataFilterToExport } from "@/lib/functions"
 
@@ -47,6 +47,7 @@ interface Props {
 }
 
 export const FormDate: React.FC<Props> = ({ charData, setChartData, visible, setVisible, name }) => {
+    const [date, setDate] = useState<string>("");
 
     const form = useForm<z.infer<typeof FormSchema>>({
         resolver: zodResolver(FormSchema),
@@ -54,8 +55,9 @@ export const FormDate: React.FC<Props> = ({ charData, setChartData, visible, set
 
     async function onSubmit(date: z.infer<typeof FormSchema>) {
         const formatDate: any = format(date.dob, "yyyy-MM-dd");
-
+        setDate(formatDate)
         const handleFilter = await handleDataFilterToExport(formatDate, setVisible)
+       console.log(handleFilter)
         setChartData(handleFilter?.data)
     }
 
@@ -92,7 +94,7 @@ export const FormDate: React.FC<Props> = ({ charData, setChartData, visible, set
                                         </FormControl>
                                     </PopoverTrigger>
                                     <Button disabled={visible ? true : false} className="w-fit bg-blue-500 hover:bg-blue-400" type="submit">Buscar {visible && <Loader2 className="animate-spin" />} </Button>
-                                    {charData.length > 0 && <ButtonExport data={charData} fileName="name_exportation"></ButtonExport>}
+                                    {charData.length > 0 && <ButtonExport data={charData} fileName={`${name + ".(" + date + ")"}`}></ButtonExport>}
                                 </div>
                                 <PopoverContent className="w-auto p-0" align="start">
                                     <Calendar
