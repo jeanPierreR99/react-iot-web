@@ -1,4 +1,4 @@
-import { Sheet, Activity, ChevronDown } from "lucide-react"
+import { Sheet, Activity, ChevronDown, LogOut } from "lucide-react"
 
 import {
   Sidebar,
@@ -15,7 +15,8 @@ import {
 import { NavLink } from "react-router-dom";
 import WIFI from "../assets/images/wifi.png"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@radix-ui/react-collapsible";
-// Menu items.
+import useStoreLogin from "@/store/useStoreLogin";
+
 const groupedItems = [
   {
     label: "Sensor DHT11",
@@ -48,6 +49,9 @@ const groupedItems = [
 ];
 
 export const AppSidebar: React.FC<any> = ({ connection }) => {
+
+  const { setIsActive } = useStoreLogin()
+
   return (
     <Sidebar>
       <SidebarContent>
@@ -58,18 +62,16 @@ export const AppSidebar: React.FC<any> = ({ connection }) => {
           <SidebarGroupLabel className="flex justify-between">Panel Administrativo<div className={`w-2 h-2 rounded-full ${connection ? "bg-green-500" : "bg-red-500"}`}></div>
           </SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
-              <SidebarMenuButton className="p-0">
-                <NavLink
-                  to={"/"}
-                  className={({ isActive }) =>
-                    `flex gap-2 w-full h-full p-1 px-2 ${isActive ? "font-bold" : ""
-                    }`}
-                >
-                  Inicio
-                </NavLink>
-              </SidebarMenuButton>
-            </SidebarMenu>
+            <SidebarMenuButton className="p-0">
+              <NavLink
+                to={"/"}
+                className={({ isActive }) =>
+                  `flex gap-2 w-full h-full p-1 px-2 ${isActive ? "font-bold" : ""
+                  }`}
+              >
+                Inicio
+              </NavLink>
+            </SidebarMenuButton>
             {groupedItems.map((item, index) => (
               <SidebarMenu key={index}>
                 <Collapsible className="group/collapsible">
@@ -106,6 +108,9 @@ export const AppSidebar: React.FC<any> = ({ connection }) => {
             ))}
           </SidebarGroupContent>
         </SidebarGroup>
+        <SidebarMenuButton onClick={() => { setIsActive() }} className="absolute bottom-4 w-full hover:bg-black/0 hover:text-red-600 px-2 text-red-400">
+          <LogOut /> Cerrar sesión
+        </SidebarMenuButton>
       </SidebarContent>
     </Sidebar>
   )

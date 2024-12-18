@@ -5,11 +5,11 @@ export const handleDataFilterToExport = async (date: string, loading: (isLoading
     loading(true);
     let response;
     try {
-        response = await axios.get(API_ENDPOINT_FILTER + date); // Espera a que se resuelva la promesa
+        response = await axios.get(API_ENDPOINT_FILTER + date);
     } catch (e) {
         console.error("Error fetching data:", e);
     } finally {
-        loading(false); // Indica que la carga ha terminado
+        loading(false);
     }
 
     return response;

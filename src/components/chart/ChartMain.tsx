@@ -34,7 +34,6 @@ interface prop {
 export const ChartMain: React.FC<prop> = ({ chartConfig, name, sensor, description, resize }) => {
   const { item } = useStoreSensor();
   const sensorKey = `${sensor}` as keyof IItemImp;
-
   const entries: any = Object.entries(chartConfig);
   const legend1 = entries[0][1].label
   const legend2 = entries[1] && entries[1][1] && entries[1][1].label
@@ -50,7 +49,7 @@ export const ChartMain: React.FC<prop> = ({ chartConfig, name, sensor, descripti
       <CardContent>
         <ChartContainer
           config={chartConfig}
-          className={`${resize ? "h-auto md:h-[calc(100vh-240px)] w-full" : ""}`}
+          className={`${resize ? "h-auto md:h-[calc(100vh-200px)] w-full" : ""}`}
         >
           <AreaChart
             accessibilityLayer
@@ -73,7 +72,7 @@ export const ChartMain: React.FC<prop> = ({ chartConfig, name, sensor, descripti
             </defs>
             <CartesianGrid vertical={true} />
             <XAxis
-              dataKey="hour"
+              dataKey="time"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
@@ -90,7 +89,7 @@ export const ChartMain: React.FC<prop> = ({ chartConfig, name, sensor, descripti
               }}
 
               dataKey={legend1}
-              type="natural"
+              type="linear"
               fillOpacity={0.4}
               fill={`url(#fill${legend1})`}
               stroke={`var(--color-${legend1})`}
@@ -104,7 +103,7 @@ export const ChartMain: React.FC<prop> = ({ chartConfig, name, sensor, descripti
               }}
 
               dataKey={legend2}
-              type="natural"
+              type="linear"
               fillOpacity={0.4}
               fill={`url(#fill${legend2})`}
               stroke={`var(--color-${legend2})`}
