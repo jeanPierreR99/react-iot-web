@@ -12,7 +12,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import WIFI from "../assets/images/wifi.png"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@radix-ui/react-collapsible";
 import useStoreLogin from "@/store/useStoreLogin";
@@ -49,7 +49,7 @@ const groupedItems = [
 ];
 
 export const AppSidebar: React.FC<any> = ({ connection }) => {
-
+  const navigate = useNavigate();
   const { setIsActive } = useStoreLogin()
 
   return (
@@ -108,7 +108,7 @@ export const AppSidebar: React.FC<any> = ({ connection }) => {
             ))}
           </SidebarGroupContent>
         </SidebarGroup>
-        <SidebarMenuButton onClick={() => { setIsActive() }} className="absolute bottom-4 w-full hover:bg-black/0 hover:text-red-600 px-2 text-red-400">
+        <SidebarMenuButton onClick={() => { setIsActive(); navigate("/") }} className="absolute bottom-4 w-full hover:bg-black/0 hover:text-red-600 px-2 text-red-400">
           <LogOut /> Cerrar sesión
         </SidebarMenuButton>
       </SidebarContent>
