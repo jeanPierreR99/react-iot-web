@@ -1,6 +1,6 @@
 "use client";
 
-import { Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis } from "recharts";
+import { Area, AreaChart, Tooltip, XAxis, YAxis } from "recharts";
 
 import {
   Card,
@@ -66,7 +66,7 @@ const chart = (chartData: IChartData[]) => (<div>
         </linearGradient>
       </defs>
 
-      <CartesianGrid vertical={true} />
+      {/* <CartesianGrid vertical={true} /> */}
       <XAxis
         dataKey="hour"
         tickLine={false}

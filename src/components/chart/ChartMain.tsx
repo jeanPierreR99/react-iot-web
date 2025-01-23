@@ -2,9 +2,7 @@ import React from "react";
 import {
   Area,
   AreaChart,
-  CartesianGrid,
   XAxis,
-  Tooltip,
   YAxis,
 } from "recharts";
 
@@ -19,6 +17,7 @@ import {
   ChartContainer,
   ChartLegend,
   ChartLegendContent,
+  ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import useStoreSensor, { IItemImp } from "@/store/useStoreSensor";
@@ -40,11 +39,19 @@ export const ChartMain: React.FC<prop> = ({ chartConfig, name, sensor, descripti
 
   return (
     <Card>
-      <CardHeader>
-        <CardTitle className="text-center">{name}</CardTitle>
-        <CardDescription className="text-center">
-          {description}
-        </CardDescription>
+      <CardHeader className="flex flex-row justify-between border-b py-2">
+        <div>
+          <CardTitle className="text-start">{name}</CardTitle>
+          <CardDescription className="text-start">
+            {description}
+          </CardDescription>
+        </div>
+        <div className="flex flex-col gap-2 border-l pl-4">
+        <CardDescription className="text-center text-xs">
+            Desktop
+          </CardDescription>
+          <CardTitle className="text-center text-3xl">29</CardTitle>
+        </div>
       </CardHeader>
       <CardContent>
         <ChartContainer
@@ -57,6 +64,7 @@ export const ChartMain: React.FC<prop> = ({ chartConfig, name, sensor, descripti
             margin={{
               left: 12,
               right: 12,
+              top: 20
             }}
           >
             <defs>
@@ -70,7 +78,7 @@ export const ChartMain: React.FC<prop> = ({ chartConfig, name, sensor, descripti
                 <stop offset="95%" stopColor={`var(--color-${legend2})`} stopOpacity={0.1} />
               </linearGradient>}
             </defs>
-            <CartesianGrid vertical={true} />
+            {/* <CartesianGrid vertical={true} /> */}
             <XAxis
               dataKey="time"
               tickLine={false}
@@ -79,7 +87,8 @@ export const ChartMain: React.FC<prop> = ({ chartConfig, name, sensor, descripti
               fontSize={11}
             />
             <YAxis fontSize={11} tickLine={false} axisLine={false} tickMargin={8} />
-            <Tooltip defaultIndex={4} trigger="click" content={<ChartTooltipContent indicator="line" />} />
+            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+
             <Area
               dot={{
                 fill: `var(--color-${legend1})`,
